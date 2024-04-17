@@ -1,8 +1,7 @@
 # How-to-solve-constrained-optimisation-problems-in-MATLAB
 In this post, I’ll explain how to set up a constrained optimisation problem using MATLAB. We’ll be working with three files: the main file (fmincon_main_file.m) and two function files defining the objective function and the constraint (mycost.m and myprod.m).
 
-
-Setting up the main file
+### Setting up the main file
 [see fmincon_main_file.m]
 
 Take a simple cost minimisation problem example. Consider a firm that chooses labour, L, and intermediate input, X, to minimise its costs of production subject to some given level of output. We assume the firm has a Cobb-Douglas production function, operates under constant-returns-to-scale and Hicks-neutral productivity. The minimisation problem is:
@@ -24,7 +23,7 @@ I have created the objective function and constraint in separate .m files. Befor
 
 ![constrained optimisation 2](https://github.com/csae-coders-corner/How-to-solve-constrained-optimisation-problems-in-MATLAB/assets/148211163/b14245bc-3393-486a-9258-16bee3500965)
 
-Defining the objective function
+### Defining the objective function
 [see mycost.m]
 
 We now define a function setting up the cost function in mycost.m. It is important to note, you must always save your function file with the same name as your function, otherwise MATLAB will give you an error when you run the main file.
@@ -33,7 +32,7 @@ We now define a function setting up the cost function in mycost.m. It is importa
 
 The parameters over which MATLAB minimises costs are labour and our only intermediate input X. We need to tell MATLAB these are the two inputs we are minimising over by equating each to par(), the vector of parameters. The last line of the .m file defines the linear cost function the firm will minimise. 
 
-Defining the production function
+### Defining the production function
 [see mycost.m]
 
 We specify the production function in the myprod.m file. We will first set the parameters in the same way we defined them in the mycost.m file. 
@@ -42,7 +41,7 @@ We specify the production function in the myprod.m file. We will first set the p
 
 Then, we need to specify either a non-linear inequality or equality constraint depending on the nature of the problem. In this case, we have a non-linear equality constraint where the firm wants to produce exactly q units of output. We need to rearrange our constraint such that the right-hand side is equal to zero. 
 
-Using fmincon to minimise the constrained optimisation problem
+### Using fmincon to minimise the constrained optimisation problem
 [see fmincon_main_file.m]
 
 fmincon is a useful optimiser when we want to find the minimum of a constrained non-linear function. If your problem does not have a constraint, alternative optimisers such as fminsearch may be better suited to your purposes.
